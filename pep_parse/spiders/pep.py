@@ -16,7 +16,7 @@ class PepSpider(scrapy.Spider):
 
     def parse_pep(self, response):
         item = PepParseItem(
-            number=response.css('#pep-content dd::text').get().strip(''""''),
+            number=response.css('#pep-content dd::text').get(),
             name=response.css('#pep-content dd.field-even::text').get(),
             status=response
             .xpath('//dt[contains(text(), "Status")]/following-sibling::dd['
