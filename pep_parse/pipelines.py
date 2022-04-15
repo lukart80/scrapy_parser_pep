@@ -26,7 +26,9 @@ class PepParsePipeline:
         file_name = f'status_summary_{now_formatted}.csv'
         file_dir = result_dir / file_name
         with open(file_dir, mode='w', encoding='utf-8') as f:
-            f.write('Статус,Количество\n')
+            results = list()
+            results.append('Статус,Количество\n')
             for status, count in self.counter.items():
-                f.write(f'{status},{count}\n')
-            f.write(f'Total,{sum(self.counter.values())}')
+                results.append(f'{status},{count}\n')
+            results.append(f'Total,{sum(self.counter.values())}')
+            f.writelines(results)
